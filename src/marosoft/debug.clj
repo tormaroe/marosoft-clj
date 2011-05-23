@@ -10,10 +10,9 @@
 
 (defn readr [prompt exit-code]
       (let [input (clojure.main/repl-read prompt exit-code)]
-        (condp = input 
-               ::t1 exit-code
-               ::v (local-context)
-               input)))
+        (if (= input ::t1)
+          exit-code
+          input)))
 
 (defn contextual-eval [ctx expr]
       (eval 
